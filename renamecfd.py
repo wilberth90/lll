@@ -11,7 +11,7 @@
 # Descripción
 # Este script ayuda a leer un CFD para despues renombrar el archivo
 # de la siguiente manera:
-#    _RFCReceptor_Fecha_RFCemisor_serie_folio_subtotal_iva_total_descuento_tipoComprobante_version.xml
+#    RFCReceptor_Fecha_RFCemisor_serie_folio.xml
 #
 # RFCReceptor: RFC de quien recibe el cfd/cfdi (opcional)
 # Fecha: Fecha en que se generó el comprobante
@@ -178,7 +178,7 @@ class XmlCFD(object):
 
     def rename(self, options):
         """ Renombra el archivo xml de la forma:
-                Fecha_RFCemisor_serie_folio_subtotal_iva_total.xml
+                Fecha_RFCemisor_serie_folio.xml
 
             Regresa el nuevo nombre del archivo
         """
@@ -198,12 +198,9 @@ class XmlCFD(object):
         if options.receptorrfc: # Se adiciona sólo si la opción -r está incluida
              nomFileXmlNew += '_'+self.atributos['receptorRfc']
         nomFileXmlNew += '_'+self.atributos['fecha']
-        nomFileXmlNew += '_'+self.atributos['hora']
         nomFileXmlNew += '_'+self.atributos['rfc']
-
         nomFileXmlNew += '_'+self.atributos['serie']
         nomFileXmlNew += '_'+self.atributos['folio']
-
 
         nomFileXmlNew += '_'+self.atributos['subTotal']
         nomFileXmlNew += '_'+self.atributos['iva']
@@ -212,7 +209,6 @@ class XmlCFD(object):
         if options.descuentos: # Se adiciona sólo si la opción -d está incluida
             nomFileXmlNew += '_'+self.atributos['descuento']
         nomFileXmlNew += '_'+self.atributos['tipoDeComprobante']
-        nomFileXmlNew += '_'+self.atributos['version']
         
         if options.UUID: # Se adiciona sólo si la opción -U se ha usado
             nomFileXmlNew += '_'+self.atributos['UUID']
